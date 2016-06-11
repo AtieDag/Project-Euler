@@ -3,29 +3,36 @@
 import numpy as np
 
 
-class SumOFNumbers:
-    def __init__(self):
-        self.matrix = []
-        self.grid = []
-
-
 def load_numbers(file_name):
+    x_numbers = 50
+    index = 0
     b = []
-    a = np.ones(10, dtype=np.int) - 1
+    a = np.ones(x_numbers, dtype=np.int) - 1
     with open(file_name) as file:
-        for index, line in enumerate(file):
+        for line in file:
             line = line.replace("\n", "")
-            print(line)
-            for j, number in enumerate(line):
-                b.append(int(number))
-                if (j + 1) % 10 == 0:
+            for num in line:
+                b.append(int(num))
+                if (index + 1) % x_numbers == 0:
                     a = a + b
-                    print(b)
-                    print(a)
                     b = []
+                index += 1
 
     return a
 
 
 if __name__ == '__main__':
-    all_su = load_numbers('Problem13.txt')
+    all_numbers = load_numbers('Problem13.txt')
+    c = []
+    rest = 0
+    for i, number in enumerate(reversed(all_numbers)):
+
+        number += rest
+        extract = number % 10
+        rest = int((number - extract) / 10)
+        c.append(extract)
+    c.append(rest)
+
+    for number in reversed(c):
+        print(number,end="")
+
