@@ -1,45 +1,22 @@
-import timeit
+from joblib import Parallel, delayed
+import multiprocessing
 
 
-def start():
-    return collatz_sequence(13)
+# what are your inputs, and what operation do you want to
+# perform on each input. For example...
 
 
-def start2(n=13):
-    if not n in memo:
-        memo[n] = collatz_sequence(n)
-    return memo[n]
+
+def processInput(i):
+    print(i)
+    return i * i
 
 
-def collatz_sequence(n, terms=0):
-    terms += 1
-    if n == 1:
-        return terms
-    # n is even
-    if n % 2 == 0:
-        return collatz_sequence(n / 2, terms)
-    # n is odd
-    return collatz_sequence(3 * n + 1, terms)
+if __name__ == "__main__":
+    inputs = range(10)
+    num_cores = multiprocessing.cpu_count()
+    print(num_cores)
 
+    results = Parallel(n_jobs=num_cores)(delayed(processInput)(i) for i in inputs)
 
-memo = {1: 1}
-
-
-def collatz_sequence2(n, terms=0):
-    if not n in memo:
-        terms += 1
-        if n == 1:
-            return terms
-        # n is even
-        if n % 2 == 0:
-            return collatz_sequence(n / 2, terms)
-        # n is odd
-        return collatz_sequence(3 * n + 1, terms)
-    return memo[n] + terms
-
-
-timer1 = timeit.timeit(start, number=10000)
-print(timer1)
-timer2 = timeit.timeit(start2, number=10000)
-print(timer2)
-print(memo)
+    print(results)
