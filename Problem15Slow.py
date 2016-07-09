@@ -2,9 +2,6 @@
 # There are exactly 6 routes to the bottom right corner.
 # How many such routes are there through a 20×20 grid?
 
-# from joblib import Parallel, delayed
-# import multiprocessing
-
 
 class Node:
     routes = 0
@@ -55,4 +52,6 @@ if __name__ == '__main__':
                 n.set_neighbour(Matrix[n.x + 1][n.y], None)
 
     # Start Executing
+    Matrix[0][0].next_node()
+
     print(Node.routes)
