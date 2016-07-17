@@ -6,7 +6,6 @@ import multiprocessing
 # perform on each input. For example...
 
 
-
 def processInput(i):
     print(i)
     return i * i

@@ -2,11 +2,25 @@
 # the maximum total from top to bottom is 23.
 
 
+
+def insert(value, pos, index=1):
+    Node(value, pos, index)
+
+
 class Node:
-    top_node = None
     botton_max_node = None
     botton_max_value = 0
     exist = {}
+
+    @classmethod
+    def set_children(cls):
+        for key, node in cls.exist.items():
+            if node.match[0] in Node.exist:
+                left = Node.exist[node.match[0]]
+                node.left = left
+            if node.match[1] in Node.exist:
+                right = Node.exist[node.match[1]]
+                node.right = right
 
     def __init__(self, value=0, pos=0, index=1):
         self.left = None
@@ -17,37 +31,8 @@ class Node:
         self.path_sum = 0
         self.path_dir = None
         Node.exist[pos] = self
+        print("Create node", pos)
 
-    def insert(self, value, pos, index=1):
-        if self.value:
-            # Fill node
-            if pos in self.match:
-                # print("insert: value ", value, " pos: ", pos, " index ", index)
-
-                if pos in Node.exist:
-                    exist = Node.exist[pos]
-                else:
-                    exist = None
-
-                if self.match.index(pos) == 0:
-                    if exist is None:
-                        self.left = Node(value, pos, index)
-                    else:
-                        self.left = exist
-                elif self.match.index(pos) == 1:
-                    if exist is None:
-                        self.right = Node(value, pos, index)
-                    else:
-                        self.right = exist
-            else:
-                if self.left:
-                    self.left.insert(value, pos, index)
-                if self.right:
-                    self.right.insert(value, pos, index)
-
-        else:
-            Node.top_node = self
-            self.value = value
 
     def maximum_patch(self, node):
         # print("---------------------------------------")
@@ -62,8 +47,8 @@ class Node:
                 Node.botton_max_node = self
         elif self.path_sum == 0:
             # print("start")
-            self.path_sum = int(self.value) + int(Node.top_node.value)
-            self.path_dir = Node.top_node
+            self.path_sum = int(self.value) + int(Node.exist[0].value)
+            self.path_dir = Node.exist[0]
         elif node.path_sum + int(self.value) > self.path_sum:
             # print("new value 2")
             self.path_sum = node.path_sum + int(self.value)
@@ -72,6 +57,7 @@ class Node:
                 Node.botton_max_value = self.path_sum
                 Node.botton_max_node = self
                 # print("New  Pos: ", self.pos, " path_sum: ", self.path_sum, "value", self.value)
+
 
     def loop_pos1(self):
         pos_number = 0
@@ -86,6 +72,7 @@ class Node:
                     a.right.maximum_patch(a)
             pos_number += 1
 
+
     def loop_pos_(self):
         pos_number = 0
         while True:
@@ -99,6 +86,7 @@ class Node:
                     a.right.maximum_patch(a)
             pos_number += 1
 
+
     def childe_pos_(self, pos):
         if self.pos == pos:
             return self
@@ -111,13 +99,13 @@ class Node:
             if found is not None:
                 return found
 
+
     def follow_node(self):
-        print(self.value, end="+")
+        print(int(self.value), end="+")
         if self.path_dir is not None:
             self.path_dir.follow_node()
         else:
             print("0")
-
 
 def load_file(file_name):
     root = Node(None)
@@ -126,13 +114,14 @@ def load_file(file_name):
         pos = 0
         for index, line in enumerate(file):
             for k, value in enumerate(line.split()):
-                root.insert(value, pos, pos + index + 1)
+                insert(value, pos, pos + index + 1)
                 pos += 1
     return root
 
 
 if __name__ == '__main__':
-    all_nodes = load_file('Problem18.txt')
-    next_node = Node.top_node
+    all_nodes = load_file('Problem67.txt'),
+    Node.set_children()
+    next_node = Node.exist[0]
     next_node.loop_pos1()
     Node.botton_max_node.follow_node()
