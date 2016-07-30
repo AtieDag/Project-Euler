@@ -20,3 +20,4 @@ while lates_prime < numpy.sqrt(up_to):
 
 # 6 Alla kvarstående tal i listan är primtal.
 print(numpy.sum(prim_numbers, dtype=numpy.int64))
+print(prim_numbers)
