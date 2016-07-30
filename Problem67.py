@@ -2,11 +2,6 @@
 # the maximum total from top to bottom is 23.
 
 
-
-def insert(value, pos, index=1):
-    Node(value, pos, index)
-
-
 class Node:
     botton_max_node = None
     botton_max_value = 0
@@ -31,8 +26,6 @@ class Node:
         self.path_sum = 0
         self.path_dir = None
         Node.exist[pos] = self
-        print("Create node", pos)
-
 
     def maximum_patch(self, node):
         # print("---------------------------------------")
@@ -58,48 +51,6 @@ class Node:
                 Node.botton_max_node = self
                 # print("New  Pos: ", self.pos, " path_sum: ", self.path_sum, "value", self.value)
 
-
-    def loop_pos1(self):
-        pos_number = 0
-        for key, value in Node.exist.items():
-            a = value
-            if a is None:
-                break
-            else:
-                if a.left is not None:
-                    a.left.maximum_patch(a)
-                if a.right is not None:
-                    a.right.maximum_patch(a)
-            pos_number += 1
-
-
-    def loop_pos_(self):
-        pos_number = 0
-        while True:
-            a = self.childe_pos(pos_number)
-            if a is None:
-                break
-            else:
-                if a.left is not None:
-                    a.left.maximum_patch(a)
-                if a.right is not None:
-                    a.right.maximum_patch(a)
-            pos_number += 1
-
-
-    def childe_pos_(self, pos):
-        if self.pos == pos:
-            return self
-        else:
-            found = None
-            if self.right is not None:
-                found = self.right.childe_pos(pos)
-            if self.left is not None and found is None:
-                found = self.left.childe_pos(pos)
-            if found is not None:
-                return found
-
-
     def follow_node(self):
         print(int(self.value), end="+")
         if self.path_dir is not None:
@@ -107,21 +58,32 @@ class Node:
         else:
             print("0")
 
-def load_file(file_name):
-    root = Node(None)
-    with open(file_name) as file:
 
+def loop_pos():
+    pos_number = 0
+    for key, value in Node.exist.items():
+        a = value
+        if a is None:
+            break
+        else:
+            if a.left is not None:
+                a.left.maximum_patch(a)
+            if a.right is not None:
+                a.right.maximum_patch(a)
+        pos_number += 1
+
+
+def load_file(file_name):
+    with open(file_name) as file:
         pos = 0
         for index, line in enumerate(file):
             for k, value in enumerate(line.split()):
-                insert(value, pos, pos + index + 1)
+                Node(int(value), pos, pos + index + 1)
                 pos += 1
-    return root
 
 
 if __name__ == '__main__':
-    all_nodes = load_file('Problem67.txt'),
+    load_file('Problem67.txt')
     Node.set_children()
-    next_node = Node.exist[0]
-    next_node.loop_pos1()
+    loop_pos()
     Node.botton_max_node.follow_node()
