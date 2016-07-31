@@ -23,16 +23,26 @@ def prime_numbers(up_to):
     # 6 Alla kvarstående tal i listan är primtal.
     return prim_numbers
 
-def rotat(number):
-    print(number)
 
-def circular(n):
-    print(str(n))
-    print(len(str(n)))
+def rotat(number):
+    array = []
+    num_str = str(number)
+    num_len = len(num_str)
+    for j in range(num_len):
+        array.append(int(num_str[j:num_len] + num_str[0:j]))
+    return array
 
 
 if __name__ == '__main__':
-    #prim = prime_numbers(2000000)
-    circular(197)
-    #for i in prim:
-    #    print(i)
+    count = 0
+    prim = prime_numbers(1000000)
+    for n in prim:
+        print(n)
+        is_prime = True
+        for i in rotat(n):
+            if i not in prim:
+                is_prime = False
+        if is_prime:
+            count += 1
+
+    print(count)
