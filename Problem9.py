@@ -4,10 +4,8 @@
 # There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 # Find the product abc.
 # Done in 153 ms...
-import time
 import math
 
-tic = time.clock()
 a = 1
 total = 0
 
@@ -25,6 +23,3 @@ while a < 1000:
     total = 0
     a += 1
 
-
-toc = time.clock()
-print((toc - tic) * 1000)

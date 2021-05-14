@@ -134,5 +134,5 @@ def load_file(file_name):
 if __name__ == '__main__':
     all_nodes = load_file('Problem18.txt')
     next_node = Node.top_node
-    next_node.loop_pos()
+    next_node.loop_pos1()
     Node.botton_max_node.follow_node()

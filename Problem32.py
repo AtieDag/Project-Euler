@@ -8,7 +8,7 @@ def pandigital(multiplicand, multiplier):
     a = "".join(sorted(str(multiplier) + str(multiplicand) + str(product)))
     if a == "123456789":
         all_products[product] = product
-        print(str(multiplier) + str(multiplicand) + str(product))
+        # print(str(multiplier) + str(multiplicand) + str(product))
     return a
 
 
@@ -20,4 +20,4 @@ sums = 0
 for key, value in all_products.items():
     sums += value
 
-print(all_products,sums)
+print(all_products, sums)

@@ -153,6 +153,7 @@ def table(dealed_cards):
         return 2
     return 0
 
+
 player_1_wins = 0
 player_2_wins = 0
 draw = 0

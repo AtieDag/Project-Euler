@@ -1,7 +1,6 @@
 # A palindromic number reads the same both ways.
 # The largest palindrome made from the product of two 2-digit numbers is 9009 = 91x99.
 # Find the largest palindrome made from the product of two 3-digit numbers.
-import time
 
 
 def is_palindromic(number):
@@ -13,7 +12,6 @@ def is_palindromic(number):
 
 
 if __name__ == '__main__':
-    tic = time.clock()
     max_value = 0
     for i in range(999, 900, -1):
         for j in range(999, 900, -1):
@@ -22,5 +20,3 @@ if __name__ == '__main__':
                     max_value = i * j
     print(max_value)
 
-    toc = time.clock()
-    print(toc - tic)

@@ -14,13 +14,13 @@ class GreatestProduct:
         if sum_array > self.t_sum:
             self.t_sum = sum_array
 
-    def input(self, matrix, H=False, V=False):
-        if V:
+    def input(self, matrix, h=False, v=False):
+        if v:
             for a in range(matrix.shape[0]):
                 self.check(matrix[:, a])  # Horizontal
         else:
             self.check(matrix[:, 0])
-        if H:
+        if h:
             for a in range(matrix.shape[0]):
                 self.check(matrix[a, :])  # Horizontal
         else:
@@ -57,7 +57,6 @@ Greater = GreatestProduct()
 for i in range(A.shape[0]-4):
     for j in range(A.shape[1]-4):
         M = A[i:i + 4, j:j + 4]
-        print(M)
         Greater.input(M)
 
 

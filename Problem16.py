@@ -4,10 +4,8 @@
 
 def sum_of_digits(A):
     sum0 = 0
-
     for i in str(A):
         sum0 += int(i)
-
     print(sum0)
 
 

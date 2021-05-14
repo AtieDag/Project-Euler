@@ -3,7 +3,7 @@
 
 import numpy
 
-up_to = 500
+up_to = 2_000_000
 # 1 Gör en lista över alla tal från två till något valbart största tal n.
 prim_numbers = numpy.arange(2, up_to, 1)
 # 2 Stryk ut från listan alla jämna tal som är större än två (4, 6, 8 osv.)

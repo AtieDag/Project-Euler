@@ -6,7 +6,7 @@
 # and the square of the sum is 3025 ? 385 = 2640. Find the difference between the sum of
 # the squares of the first one hundred natural numbers and the square of the sum.
 # Done in 0.05 ms...
-import time
+
 
 
 def sum_minus_square(number_of_numbers):
@@ -21,9 +21,5 @@ def sum_minus_square(number_of_numbers):
 
 
 if __name__ == '__main__':
-    tic = time.clock()
     difference = sum_minus_square(100)
-
     print(difference)
-    toc = time.clock()
-    print((toc - tic) * 1000)

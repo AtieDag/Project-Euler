@@ -2,7 +2,6 @@
 # What is the value of this product?
 # Done in 3 ms...
 
-import time
 
 a = '73167176531330624919225119674426574742355349194934969835203127745063262395783180169848018694' \
     '78851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096' \
@@ -39,9 +38,4 @@ def sum_of_the_product(long_string, adjacent_digits):
 
 
 if __name__ == '__main__':
-    tic = time.clock()
-
     sum_of_the_product(a, 13)
-
-    toc = time.clock()
-    print((toc - tic) * 1000)

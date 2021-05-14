@@ -1,9 +1,7 @@
 import math
 import numpy as np
 from numpy import genfromtxt
-import time
-# import matplotlib.pyplot as plt
-# Done in 70 ms
+
 
 class Point(object):
     def __init__(self, x=0, y=0):
@@ -56,8 +54,6 @@ def get_all_triangles(data):
 
 
 if __name__ == '__main__':
-
-    tic = time.clock()
     my_data = genfromtxt('Problem102.csv', delimiter=',')
     my_data_split = np.split(my_data, len(my_data[:, ]))
     all_triangles = get_all_triangles(my_data_split)
@@ -68,8 +64,6 @@ if __name__ == '__main__':
         if triangle.point_in_triangle(origin):
             summa += 1
     print(summa)
-    toc = time.clock()
-    print((toc - tic) * 1000)
 
 '''
 
